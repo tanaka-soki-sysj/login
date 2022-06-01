@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.persistence.ProductInfoMapper">
+
+    <insert id="insert">
+        INSERT INTO course(course_no, course_name, the_date,start_time,end_time,capcity,inp_date, upd_date)
+        VALUES (#{courseNo},#{courseName}, #{theDate}, #{startTime}, #{endTime}, #{capcity},CURRENT_DATE(), NOW())
+    </insert>
+
+    <select id="selectcount" resultType="int">
+        SELECT COUNT(*) FROM course
+        <where>
+            <if test="courseNo != ''">
+                course_no = #{courseNo}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO course_user(user_id,passwd,authority,inp_date, upd_date)
+        VALUES (#{userId},#{passwd},'1',CURRENT_DATE(), NOW())
+    </insert>
+
+    <select id="usercount" resultType="int">
+        SELECT COUNT(*) FROM course_user
+        <where>
+            <if test="userId != ''">
+                user_id = #{userId}
+            </if>
+            <if test="passwd != ''">
+                AND passwd = #{passwd}
+            </if>
+        </where>
+    </select>
+
+    <select id="idcount" resultType="int">
+        SELECT COUNT(*) FROM course_user
+        <where>
+            <if test="userId != ''">
+                user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
+        <select id="authcount" resultType="int">
+        SELECT authority FROM course_user
+        <where>
+            <if test="userId != ''">
+                user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

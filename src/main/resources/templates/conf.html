@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>講座確認</title>
+
+<!-- linkタグ：読み込むcssファイルを指定（追記）******************************** -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/h1color.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/regist.css}">
+
+<meta charset="UTF-8">
+<title>登録確認</title>
+
+<style>
+#example {
+	margin: auto;
+}
+</style>
+
+</head>
+<body>
+	<div style="text-align: center">
+		<h1>講座確認</h1>
+		<strong class="h2">※&emsp;入力内容を確認してください。</strong>
+		<form th:action="@{/end}" th:object="${courseForm}" method="post">
+			<table id="example">
+				<tr>
+					<th class="h1" align="left">講座番号&emsp;&emsp;&emsp;</th>
+					<th colspan="2" align="left">&emsp;&emsp;&emsp;&emsp;<span th:text="*{courseNo}"></span></th>
+				</tr>
+				<tr>
+					<th class="h1" align="left">講座名&emsp;&emsp;&emsp;</th>
+					<th colspan="2" align="left">&emsp;&emsp;&emsp;&emsp;<span th:text="*{courseName}"></span></th>
+				</tr>
+				<tr>
+					<th class="h1" align="left">講座開催日&emsp;&emsp;&emsp;</th>
+					<th align="left">&emsp;&emsp;&emsp;&emsp;<span th:text="*{year}"></span>&emsp;<span class="h1">年</span></th>
+					<th align="left">&emsp;&emsp;&emsp;<span th:text="*{month}"></span>&emsp;<span class="h1">月</span></th>
+					<th align="left">&emsp;&emsp;<span th:text="*{day}"></span>&emsp;<span class="h1">日</span></th>
+				</tr>
+				<tr>
+					<th class="h1" align="left">開始時刻&emsp;&emsp;&emsp;</th>
+					<th align="right">&emsp;&emsp;&emsp;&emsp;<span th:text="*{startHour}"></span>&emsp;<span class="h1">時</span></th>
+					<th align="right">&emsp;&emsp;&emsp;&emsp;<span th:text="*{startMinutes} != 0 ? *{startMinutes} : *{startMinutes} + '0'"></span>&emsp;
+					<span class="h1">分</span></th>
+				</tr>
+				<tr>
+					<th class="h1" align="left">終了時刻&emsp;&emsp;&emsp;</th>
+					<th align="right">&emsp;&emsp;&emsp;&emsp;<span th:text="*{finishHour}"></span>&emsp;<span class="h1">時</span></th>
+					<th align="right">&emsp;&emsp;&emsp;&emsp;<span th:text="*{finishMinutes} != 0 ? *{finishMinutes} : *{finishMinutes} + '0'"></span>&emsp;
+					<span class="h1">分</span></th>
+				</tr>
+				<tr>
+					<th class="h1" align="left">定員&emsp;&emsp;&emsp;</th>
+					<th align="right">&emsp;&emsp;&emsp;&emsp;<span th:text="*{capcity}"></span>&emsp;<span class="h1">人</span></th>
+				</tr>
+			</table>
+			<br><br><input type="submit" name="back" value="戻る" class="button" />&emsp;&emsp;
+					<input type="submit" name="regist" value="登録" class="button" />
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>講座登録</title>
+
+<!-- linkタグ：読み込むcssファイルを指定（追記）******************************** -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/h1color.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/regist.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" href="/firstServlet/sessionMondai.css"
+	type="text/css">
+
+<style>
+#example {
+	margin: auto;
+	width: 570px;
+	padding: 10px;
+}
+
+.box select {
+	width: 83px;
+}
+
+#exampledo {
+	margin: auto;
+	width: 470px;
+	padding: 10px;
+}
+
+#table {
+	background-color: rgba(255, 255, 0, 0.3);
+}
+</style>
+
+</head>
+<body>
+	<div style="text-align: center">
+		<h1>講座登録</h1>
+		<strong class="h2">※&emsp;は入力必須です。</strong>
+
+		<form th:action="@{/conf}" th:object="${courseForm}" method="post">
+
+			<div th:if="${#fields.hasErrors()}">
+				<!-- エラーメッセージを表示（追記） ****************************************** -->
+				<table id="exampledo" border="1" style="border-collapse: collapse">
+					<tr id="table">
+						<th align="left">
+							<div class="error">
+								<strong><p th:errors="*{all}" class="error-message">error！</p></strong>
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+			<table id="example">
+				<tr>
+					<th align="center" class="h1">講座番号&emsp;<span class="h2">※</span>&emsp;
+					</th>
+					<td align="left" colspan="3">&emsp;&emsp;<input type="text"
+						size="23" th:field="*{courseNo}" maxlength="4" /></td>
+				</tr>
+				<tr>
+					<th align="center" class="h1">講座名&emsp;<span class="h2">※</span>&emsp;&emsp;
+					</th>
+					<td align="left" colspan="3">&emsp;&emsp;<input type="text"
+						size="23" th:field="*{courseName}" maxlength="40" /></td>
+				</tr>
+				<tr>
+					<th align="center" class="h1">講座開催日&emsp;<span class="h2">※</span></th>
+					<td align="left" colspan="2">
+						<div class="box">
+
+							&emsp;&emsp;<select th:field="*{year}"><option
+									th:value="null"></option>
+								<option th:each="i : ${courseForm.getEvent()}" th:text="${i}"
+									th:value="${i}"></option>
+							</select><Strong><span class="h1">年</span></Strong> <select
+								th:field="*{month}"><option th:value="null"></option>
+								<option th:each="i : ${#numbers.sequence(1, 12)}" th:text="${i}"
+									th:value="${i}"></option>
+							</select><Strong><span class="h1">月</span></Strong> <select
+								th:field="*{day}"><option th:value="null"></option>
+								<option th:each="i : ${#numbers.sequence(1, 31)}" th:text="${i}"
+									th:value="${i}"></option>
+							</select><Strong><span class="h1">日</span></Strong>
+
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th align="center" class="h1">開始時刻&emsp;<span class="h2">※</span>&emsp;
+					</th>
+					<td align="left" colspan="2">
+						<div class="box">
+							&emsp;&emsp;<select th:field="*{startHour}"><option
+									th:value="null"></option>
+								<option th:each="i : ${#numbers.sequence(10, 18)}"
+									th:text="${i}" th:value="${i}"></option>
+							</select><Strong><span class="h1">時</span></Strong> <select
+								th:field="*{startMinutes}"><option th:value="null"></option>
+								<option th:value="00">00</option>
+								<option th:value="30">30</option>
+							</select><Strong><span class="h1">分</span></Strong>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th align="center" class="h1">終了時刻&emsp;<span class="h2">※</span>&emsp;
+					</th>
+					<td align="left" colspan="2">
+						<div class="box">
+							&emsp;&emsp;<select th:field="*{finishHour}"><option
+									th:value="null"></option>
+								<option th:each="i : ${#numbers.sequence(10, 18)}"
+									th:text="${i}" th:value="${i}"></option>
+							</select><Strong><span class="h1">時</span></Strong> <select
+								th:field="*{finishMinutes}"><option th:value="null"></option>
+								<option th:value="00">00</option>
+								<option th:value="30">30</option>
+							</select><Strong><span class="h1">分</span></Strong>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th align="center" class="h1">定員&emsp;<span class="h2">※</span>&emsp;&emsp;&emsp;
+					</th>
+					<td align="left">&emsp;&emsp;<input type="text"
+						th:field="*{capcity}" size="7" /><Strong><span
+							class="h1">人</span></Strong>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<p></p>
+			<input type="submit" name="back" value="戻る" class="button" />&emsp;&emsp;<input
+				type="submit" name="next" value="確認" class="button" />
+		</form>
+	</div>
+</body>
+</html>

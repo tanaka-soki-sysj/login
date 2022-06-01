@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ログイン</title>
+<!-- linkタグ：読み込むcssファイルを指定（追記）******************************** -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/h1color.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/regist.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+<style>
+#example {
+	margin: auto;
+}
+#exampledo {
+	margin: auto;
+	width: 470px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div style="text-align: center">
+		<h1>ログイン</h1>
+		<form th:action="@{/menu}" th:object="${userForm}" method="post">
+			<div th:if="${#fields.hasErrors()}">
+				<!-- エラーメッセージを表示（追記） ****************************************** -->
+				<table id="exampledo">
+					<tr>
+						<th>
+							<div class="error">
+								<strong><p th:errors="*{all}" class="error-message">error！</p></strong>
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+			<table id="example">
+				<tr>
+					<th align="left" class="h1">ユーザーID<span class="h2">※</span>&emsp;
+					</th>
+					<td align="left" colspan="3">&emsp;<input type="text"
+						size="23" th:field="*{userId}" maxlength="8" /></td>
+				</tr>
+				<tr>
+					<th align="left" class="h1">パスワード<span class="h2">※</span>&emsp;
+					</th>
+					<td align="left" colspan="3">&emsp;<input type="password"
+						size="23" th:field="*{passwd}" maxlength="8" /></td>
+				</tr>
+			</table>
+			<div>
+			<br>
+				<input type="submit" name="login" value="  ログイン  " class="button" />
+			</div>
+			<br>
+		</form>
+
+		<p>初めての方はユーザーを登録してください。</p>
+
+		<form th:action="@{/regist}" th:object="${userForm}" method="post">
+				<input type="submit" name="regist" value="ユーザ登録" class="button" />
+		</form>
+	</div>
+</body>
+</html>

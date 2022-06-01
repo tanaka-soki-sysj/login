@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ユーザー登録確認</title>
+<!-- linkタグ：読み込むcssファイルを指定（追記）******************************** -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/h1color.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/regist.css}">
+
+<style>
+#example {
+	margin: auto;
+}
+</style>
+</head>
+<body>
+	<div style="text-align: center">
+		<h1>ユーザー登録確認</h1>
+		<br>
+		<br>
+		<form th:action="@{/userEnd}" th:object="${userForm}" method="post">
+		<table id="example">
+			<tr>
+				<th class="h1" align="left">ユーザーID&emsp;&emsp;&emsp;</th>
+				<th colspan="2" align="left">&emsp;&emsp;&emsp;&emsp;<span th:text="*{userId}"></span>
+				</th>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<div>
+			<input type="submit" name="back" value="戻る" class="button" />&emsp;&emsp;<input type="submit" name="conf" value="登録" class="button" />
+		</div>
+		</form>
+	</div>
+</body>
+</html>

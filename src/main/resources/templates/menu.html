@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>講座管理メニュー</title>
+
+<!-- linkタグ：読み込むcssファイルを指定（追記）******************************** -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/h1color.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/regist.css}">
+
+<style>
+#example {
+	margin: auto;
+}
+</style>
+
+</head>
+<body>
+	<div style="text-align: center">
+		<div th:if="${userForm.userId != null}">
+		<div style="text-align : right">「<span style="text-align : right" th:text="${userForm.userId}"></span>」ユーザーでログイン中</div>
+		</div>
+		<h1>講座管理メニュー</h1>
+		<div>「講座登録」または、「講座修正削除」ボタンを押してください。</div>
+		<br>
+		<br>
+		<form th:action="@{/input}" th:object="${courseForm}" method="post">
+			<div>
+				<input type="submit" name="regist" value="講座登録" class="button" />
+			</div>
+			<br>
+		</form>
+		<div>
+			<input type="submit" name="regist" value="講座修正削除" class="button1" />
+		</div>
+	</div>
+</body>
+</html>
